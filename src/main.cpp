@@ -99,10 +99,12 @@ void parse_args(int argc, char* argv[], QString& workdir, QString & shell_comman
                 dropMode = true;
                 break;
             case 'p':
-                Properties* p = Properties::Instance(QString::fromLocal8Bit(optarg));
-		if (p == nullptr)
-                    print_usage_and_exit(1);
-                break;
+		{
+                    Properties* p_temp = Properties::Instance(QString::fromLocal8Bit(optarg));
+                    if (p_temp == nullptr)
+                        print_usage_and_exit(1);
+                    break;
+		}
             case '?':
                 print_usage_and_exit(1);
                 break;
